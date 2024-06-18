@@ -15,6 +15,6 @@ export async function saveCourse(req: Request, res: Response) {
   const response = await client.query(`insert into courses (name) values ('${course.name}')`)
   res.status(201).json(response);
 }
-
+//teste
 
 
