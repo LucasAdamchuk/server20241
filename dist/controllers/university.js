@@ -9,35 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.saveCourse = exports.listCourse = void 0;
+exports.saveuniversity = exports.listuniversity = void 0;
 const database_1 = require("../shared/database");
-const courses = [
-    {
-        "id": 1,
-        "name": "BSI"
-    },
-    {
-        "id": 2,
-        "name": "Licenciatura"
-    },
-];
-function listCourse(req, res) {
+function listuniversity(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         //conecta com o banco
         const client = yield database_1.pool.connect();
         //realiza consulta sql
-        const courses = yield client.query(`select * from courses`);
+        const universitys = yield client.query(`select * from university`);
         //retorna consulta em formato json
-        return res.status(200).json(courses);
+        return res.status(200).json(universitys.rows);
     });
 }
-exports.listCourse = listCourse;
-function saveCourse(req, res) {
+exports.listuniversity = listuniversity;
+function saveuniversity(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const course = req.body;
-        course.id = Math.floor(Math.random() * 50);
-        courses.push(course);
-        res.status(201).json(courses);
+        const university = req.body;
+        const client = yield database_1.pool.connect();
+        const response = yield client.query(`insert into university (nome, endereco) values ('${university.nome}', '${university.endereco}')`);
+        res.status(201).json(response);
     });
 }
-exports.saveCourse = saveCourse;
+exports.saveuniversity = saveuniversity;
