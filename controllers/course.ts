@@ -1,16 +1,6 @@
 import { pool } from "../shared/database";
 import { Request, Response, Router } from "express";
 
-const courses = [
-  {
-    "id": 1,
-    "name": "BSI"
-  },
-  {
-    "id": 2,
-    "name": "Licenciatura"
-  },
-]
 export async function listCourse(req: Request, res: Response) {
   //conecta com o banco
   const client = await pool.connect();
