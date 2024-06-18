@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { listCourse, saveCourse } from "./controllers/course";
+import { listuniversity, saveuniversity } from "./controllers/university";
 const router = Router();
 
-router.get("/courses", listCourse);
-router.post("/courses", saveCourse)
+router.get("/university", listuniversity);
+router.post("/university", saveuniversity)
 
 export { router };
