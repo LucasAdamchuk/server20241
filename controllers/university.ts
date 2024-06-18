@@ -12,7 +12,7 @@ export async function listuniversity(req: Request, res: Response) {
 export async function saveuniversity(req: Request, res: Response) {
   const university = req.body;
   const client = await pool.connect();
-  const response = await client.query(`insert into university (nome, endereco) values ('${university.name}', '${university.endereco}')`)
+  const response = await client.query(`insert into university (nome, endereco) values ('${university.nome}', '${university.endereco}')`)
   res.status(201).json(response);
 }
 
