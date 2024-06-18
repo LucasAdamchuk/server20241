@@ -10,9 +10,11 @@ export async function listuniversity(req: Request, res: Response) {
   return res.status(200).json(universitys.rows);
 }
 export async function saveuniversity(req: Request, res: Response) {
-  const university = req.body;
+  const { nome, endereco } = req.body;
   const client = await pool.connect();
-  const response = await client.query(`insert into university (nome, endereco) values ('${university.nome}', '${university.endereco}')`)
+  const queryText = 'INSERT INTO university (nome, endereco) VALUES ($1, $2) RETURNING *';
+  const values = [nome, endereco];
+  const response = await client.query(queryText, values);
   res.status(201).json(response);
 }
 
